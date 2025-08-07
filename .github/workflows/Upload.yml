@@ -1,2 +1,23 @@
-- name: Upload a Build Artifact
-  uses: actions/upload-artifact@v4.6.2
+name: Upload Build Artifact
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    # Your build steps would go here
+    - name: Build project
+      run: echo "Your build commands here" > file.txt
+
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: my-artifact
+        path: file.txt
